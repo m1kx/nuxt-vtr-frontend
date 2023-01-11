@@ -5,7 +5,7 @@ class PB {
   instance: PocketBase;
   currentUser: any;
   constructor() {
-    this.instance = new PocketBase(`http://${config.domain}:8090`);
+    this.instance = new PocketBase(`https://${config.domain}`);
     this.currentUser = this.instance.authStore.model;
     if (this.currentUser) {
       this.instance.collection('users').authRefresh();
