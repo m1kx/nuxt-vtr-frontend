@@ -23,6 +23,9 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: .output/public
+        branch: main
+        token: ${{ secrets.TOKEN }}
+        repository-name: m1kx/m1kx.github.io
       env:
         ACCESS_TOKEN: ${{ secrets.TOKEN }}
         BRANCH: main
