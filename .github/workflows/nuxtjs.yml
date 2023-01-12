@@ -24,5 +24,4 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.TOKEN }}
         BRANCH: main
-        FOLDER: dist
         REPO: m1kx/m1kx.github.io
