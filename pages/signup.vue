@@ -125,7 +125,7 @@ export default {
             <label for="password">Password wiederholen</label>
             <input class="valid-check" v-model="password_w" type="password" minlength="8" id="password_w" required>
               <label>Kurse</label>
-              <input class="valid-check" v-model="courses" id="courses" type="text" placeholder="E G1,D G4,M L1,MU G1" pattern="^([A-Z]{1,2} [A-Z]\d)(,([A-Z]{1,2} [A-Z]\d))*$" required>
+              <input onkeyup="this.value = this.value.toUpperCase();" class="valid-check" v-model="courses" id="courses" type="text" placeholder="E G1,D G4,M L1,MU G1" pattern="^([A-Z]{1,2} [A-Z]\d)(,([A-Z]{1,2} [A-Z]\d))*$" required>
               <label>Stufe: {{ current }}</label>
               <button class="select" @click="button_select($event)">EF</button><button class="select" @click="button_select($event)">Q1</button><button class="select" @click="button_select($event)">Q2</button><br>
             <button id="signin" @click="signUp($event)">REGISTRIEREN</button>

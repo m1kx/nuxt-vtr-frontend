@@ -107,7 +107,7 @@ export default {
       <h2 style="text-decoration: underline; underline-offset: 10px; font-weight: 500; margin-top: 0;">Daten Aktualisieren</h2>
       <div>(Kurse aktuell: <div class="highlight">{{ currentUser.subjects.replaceAll(":",",") }}</div> & Stufe: <div class="highlight">{{ currentUser.class }}</div>)</div>
       <label>Kurse</label>
-      <input class="valid-check" v-model="courses" id="courses" type="text" placeholder="E G1,D G4,M L1,MU G1" pattern="^([A-Z]{1,2} [A-Z]\d)(,([A-Z]{1,2} [A-Z]\d))*$" required>
+      <input onkeyup="this.value = this.value.toUpperCase();" class="valid-check" v-model="courses" id="courses" type="text" placeholder="E G1,D G4,M L1,MU G1" pattern="^([A-Z]{1,2} [A-Z]\d)(,([A-Z]{1,2} [A-Z]\d))*$" required>
       <label>Stufe: {{ current }}</label>
       <button class="select" @click="button_select($event)">EF</button><button class="select" @click="button_select($event)">Q1</button><button class="select" @click="button_select($event)">Q2</button><br>
       <button @click="button_submit($event)" style="background-color: rgba(255, 255, 255, 0.162); margin-top: 35px; width: 50vw;">OK</button>
