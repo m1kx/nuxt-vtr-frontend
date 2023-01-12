@@ -30,7 +30,7 @@ export default {
           }
         }
       }
-    }, 200);
+    }, 500);
   },
   methods: {
     validCheck(): boolean {

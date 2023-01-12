@@ -36,7 +36,7 @@ export default {
           }
         }
       }
-    }, 200);
+    }, 500);
   },
   methods: {
     async login() {
