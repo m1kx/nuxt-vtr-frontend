@@ -23,5 +23,6 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@releases/v3
       env:
         ACCESS_TOKEN: ${{ secrets.TOKEN }}
-        BRANCH: gh-pages
+        BRANCH: main
         FOLDER: dist
+        REPO: m1kx/m1kx.github.io
