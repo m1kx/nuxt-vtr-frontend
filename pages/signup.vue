@@ -23,7 +23,6 @@ export default {
     if (pb.currentUser) {
       navigateTo("/");
     }
-    console.log("MOUNT")
     const selects = document.getElementsByClassName('select');
     for (let i = 0; i < selects.length; i++) {
       const element = selects[i] as HTMLButtonElement;
