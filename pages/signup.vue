@@ -94,8 +94,7 @@ export default {
         passwordConfirm: this.password,
         email: this.username,
         class: this.current,
-        // @ts-ignore
-        subjects: this.courses.replace(',', ':'),
+        subjects: this.courses.replace(/,/g, ':'),
       };
       const createdUser = await pb.instance.collection('users').create(data);
       const requested = await pb.instance.collection('users').requestVerification(data.email);
