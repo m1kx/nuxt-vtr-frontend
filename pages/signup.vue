@@ -23,19 +23,20 @@ export default {
     if (pb.currentUser) {
       navigateTo("/");
     }
-    const selects = document.getElementsByClassName('select');
-    for (let i = 0; i < selects.length; i++) {
-      const element = selects[i] as HTMLButtonElement;
-      element.onclick = () => {
-        element.classList.add('selected');
-        console.log('click')
-        for (let x = 0; x < selects.length; x++) {
-          if (selects[x] != element) {
-            selects[x].classList.remove('selected');
+    setTimeout(() => {
+      const selects = document.getElementsByClassName('select');
+      for (let i = 0; i < selects.length; i++) {
+        const element = selects[i] as HTMLButtonElement;
+        element.onclick = () => {
+          element.classList.add('selected');
+          for (let x = 0; x < selects.length; x++) {
+            if (selects[x] != element) {
+              selects[x].classList.remove('selected');
+            }
           }
         }
       }
-    }
+    }, 200);
   },
   methods: {
     async login() {
@@ -95,8 +96,8 @@ export default {
         class: this.current,
         subjects: this.courses.replace(/,/g, ':'),
       };
-      const createdUser = await pb.instance.collection('users').create(data);
-      const requested = await pb.instance.collection('users').requestVerification(data.email);
+      await pb.instance.collection('users').create(data);
+      await pb.instance.collection('users').requestVerification(data.email);
       this.login()
     },
     button_select(e: Event) {

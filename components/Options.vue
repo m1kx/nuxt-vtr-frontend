@@ -14,18 +14,23 @@ export default {
   mounted() {
     this.courses = this.currentUser.subjects.replaceAll(":", ",");
     this.current = this.currentUser.class;
-    const selects = document.getElementsByClassName('select');
-    for (let i = 0; i < selects.length; i++) {
-      const element = selects[i] as HTMLButtonElement;
-      element.onclick = () => {
-        element.classList.add('selected');
-        for (let x = 0; x < selects.length; x++) {
-          if (selects[x] != element) {
-            selects[x].classList.remove('selected');
+    setTimeout(() => {
+      const selects = document.getElementsByClassName('select');
+      for (let i = 0; i < selects.length; i++) {
+        const element = selects[i] as HTMLButtonElement;
+        if (element.innerHTML == this.current) {
+          element.classList.add('selected');
+        }
+        element.onclick = () => {
+          element.classList.add('selected');
+          for (let x = 0; x < selects.length; x++) {
+            if (selects[x] != element) {
+              selects[x].classList.remove('selected');
+            }
           }
         }
       }
-    }
+    }, 200);
   },
   methods: {
     validCheck(): boolean {
@@ -84,7 +89,6 @@ export default {
       }
       // @ts-ignore
       if (this.current == this.currentUser.class && this.courses.replaceAll(",", ":") == this.currentUser.subjects) {
-        console.log("same")
         return
       }
       // @ts-ignore
@@ -94,7 +98,13 @@ export default {
         // @ts-ignore
         "subjects": this.courses.replaceAll(',', ':')
       }
-      await pb.instance.collection('users').update(this.currentUser.id, data_updated);
+      try {
+        await pb.instance.collection('users').update(this.currentUser.id, data_updated);
+        await pb.instance.collection('users').update(this.currentUser.id, { "update": true });
+      } catch (error) {
+        alert("Ein unerwarteter Fehler ist aufgetreten, versuche es später erneut...");
+        this.loading_upd = false;
+      }
       this.loading_upd = false;
     }
   }
