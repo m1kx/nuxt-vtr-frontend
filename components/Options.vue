@@ -14,23 +14,6 @@ export default {
   mounted() {
     this.courses = this.currentUser.subjects.replaceAll(":", ",");
     this.current = this.currentUser.class;
-    setTimeout(() => {
-      const selects = document.getElementsByClassName('select');
-      for (let i = 0; i < selects.length; i++) {
-        const element = selects[i] as HTMLButtonElement;
-        if (element.innerHTML == this.current) {
-          element.classList.add('selected');
-        }
-        element.onclick = () => {
-          element.classList.add('selected');
-          for (let x = 0; x < selects.length; x++) {
-            if (selects[x] != element) {
-              selects[x].classList.remove('selected');
-            }
-          }
-        }
-      }
-    }, 500);
   },
   methods: {
     validCheck(): boolean {
@@ -51,8 +34,19 @@ export default {
     },
     button_select(e: Event) {
       e.preventDefault();
+      const element = e.srcElement;
       // @ts-ignore
-      this.current = e.srcElement.innerHTML;
+      this.current = element.innerHTML;
+      const selects = document.getElementsByClassName('select');
+      for (let i = 0; i < selects.length; i++) {
+        const button = selects[i] as HTMLButtonElement;
+        if (element == button) {
+          // @ts-ignore
+          element.classList.add('selected');
+          continue
+        }
+        button.classList.remove('selected');
+      }
     },
     loading(e: HTMLElement) {
       const dots = e;

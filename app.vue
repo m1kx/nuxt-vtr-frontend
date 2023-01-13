@@ -117,7 +117,7 @@ input{
   padding: 10px 0px 10px 15px;
 }
 a {
-  color: white;
+  color: rgb(162, 162, 162);
 }
 
 @media (max-width: 860px) {
