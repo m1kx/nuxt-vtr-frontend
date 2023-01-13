@@ -116,6 +116,9 @@ input{
   font-weight: 300;
   padding: 10px 0px 10px 15px;
 }
+a {
+  color: white;
+}
 
 @media (max-width: 860px) {
 	#main {
