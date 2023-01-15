@@ -67,9 +67,6 @@ export default {
 </template>
 
 <style scoped>
-* {
-  transition: all 0.1s;
-}
 #confirm {
   padding-top: 20px;
 }
@@ -85,6 +82,7 @@ export default {
 }
 #main-content {
   text-align: center;
+  padding-bottom: 40px;
 }
 #signin {
   margin-left: 1px;
