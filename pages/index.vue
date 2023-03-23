@@ -1,4 +1,5 @@
 <script lang="ts">
+import Display from '../components/Display.vue';
 import Options from '../components/Options.vue';
 export default {
   components: {
@@ -47,7 +48,8 @@ export default {
   <div id="main-content">
     <div v-if="currentUser" id="main-settings">
       <div v-if="currentUser.verified">
-        <h1>Einstellungen</h1>
+        <h1>ACCOUNT</h1>
+        <Display :currentUser="currentUser" />
         <Options :currentUser="currentUser"></Options>
         <p>Angemeldet!<br/>(user-id: {{ pb.currentUser.id }})</p>
       </div>
