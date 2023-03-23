@@ -6,8 +6,14 @@ export default {
   },
   data() {
     return {
-      h_hash: atob(this.currentUser.h_hash),
-      m_hash: atob(this.currentUser.m_hash),
+      h_data: {
+        hash: atob(this.currentUser.h_hash),
+        date: this.currentUser.h_date.replaceAll("-", ".")
+      },
+      m_data: {
+        hash: atob(this.currentUser.m_hash),
+        date: this.currentUser.m_date.replaceAll("-", ".")
+      },
     }
   }
 }
@@ -16,9 +22,9 @@ export default {
 <template>
   <div id="display">
     <div id="display-container" class="area" pos="top">
-      <DataDisplay heading="TAG 1" :day_data="h_hash" />
+      <DataDisplay :day_data="h_data" />
       <div id="seperator"></div>
-      <DataDisplay heading="TAG 2" :day_data="m_hash" />
+      <DataDisplay :day_data="m_data" />
     </div>
   </div>
 </template>

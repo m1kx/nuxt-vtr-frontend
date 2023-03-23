@@ -3,12 +3,20 @@ export default {
   name: "DataDisplay",
   props: {
     day_data: {
-      type: String,
+      type: Object,
       default: "Null"
     },
-    heading: {
-      type: String,
-      default: "Null"
+  },
+  data() {
+    return {
+      heading: "Loading"
+    }
+  },
+  mounted() {
+    if (this.day_data.hash != "") {
+      this.heading = this.day_data.date;
+    } else {
+      this.heading = "Nichts"
     }
   },
   methods: {
@@ -16,7 +24,7 @@ export default {
       return inner.split("|")
     },
     fmt_data() {
-      const actions = this.day_data.split("!!!")
+      const actions = this.day_data.hash.split("!!!")
       for (let i = 0; i < actions.length; i++) {
         // @ts-ignore
         actions[i] = actions[i].split("|")
