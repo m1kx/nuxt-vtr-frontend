@@ -120,11 +120,14 @@ a {
 
 .data-display {
   height: 100%;
-  width: 49.75%;
+  width: calc(50% - (3.5px / 2));
   float: left;
   overflow-y: scroll;
   overflow-x: hidden;
   font-size: 19px;
+}
+.data-display p {
+  line-height: 12px;
 }
 .data-display::-webkit-scrollbar {
   width: 10px;
@@ -148,7 +151,7 @@ i {
 }
 
 #display-container {
-  height: 25vh;
+  height: 315px;
   width: 50vw;
   padding: 20px;
 }
@@ -159,7 +162,7 @@ i {
 }
 
 #seperator {
-  width: 0.5%;
+  width: 3.5px;
   height: 100%;
   background-color: rgba(203, 203, 203, 0.216);
   float: left;
@@ -179,9 +182,10 @@ i {
   #login-style {
     width: calc(98vw - 40px);
     padding: 20px;
+    box-shadow: none;
   }
   #display-container {
-    height: 25vh;
+    height: 150px;
     width: calc(98vw - 40px);
     padding: 20px;
   }
@@ -190,6 +194,8 @@ i {
   }
   .data-display {
     font-size: 15px;
+    height: 99%;
+    position: relative;
   }
   .data-display p {
     line-height: 5px;
@@ -198,13 +204,17 @@ i {
     margin-top: 0px;
   }
   #seperator {
-    display: none;
+    width: 86.5%;
+    height: 5px;
+    position: absolute;
+    top: 240px;
   }
   #display {
     width: 100vw;
     margin-left: 0;
     padding-left: 1vw;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
+    box-shadow: none;
   }
   input{
     width: calc(98vw - 55px - 6px);
@@ -213,7 +223,14 @@ i {
     width: calc(98vw - 40px);
   }
   .area {
-    border-radius: 20px;
+    border-radius: 0px;
+    box-shadow: none;
+  }
+  .area[pos=top] {
+    border-radius: 15px 15px 0px 0px;
+  }
+  .area[pos=bottom] {
+    border-radius: 0px 0px 15px 15px;
   }
   .select {
     width: calc(((98vw - 55px) - 10px) / 3);

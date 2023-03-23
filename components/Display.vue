@@ -15,7 +15,7 @@ export default {
 
 <template>
   <div id="display">
-    <div id="display-container" class="area">
+    <div id="display-container" class="area" pos="top">
       <DataDisplay heading="TAG 1" :day_data="h_hash" />
       <div id="seperator"></div>
       <DataDisplay heading="TAG 2" :day_data="m_hash" />

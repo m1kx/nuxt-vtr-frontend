@@ -113,9 +113,9 @@ export default {
 
 <template>
   <div id="login" style="text-align: center;">
-    <div id="login-style" class="area">
-      <h2 style="text-decoration: underline; underline-offset: 10px; font-weight: 500; margin-top: 0;">Daten Aktualisieren</h2>
-      <div>(Kurse aktuell: <div class="highlight">{{ currentUser.subjects.replaceAll(":",",") }}</div> & Stufe: <div class="highlight">{{ currentUser.class }}</div>)</div>
+    <div id="login-style" class="area" pos="bottom">
+      <h2 style="font-weight: 900; margin-top: 0;">DATEN ÄNDERN</h2>
+      <!--<div>(Kurse aktuell: <div class="highlight">{{ currentUser.subjects.replaceAll(":",",") }}</div> & Stufe: <div class="highlight">{{ currentUser.class }}</div>)</div>-->
       <label>Kurse</label>
       <input onkeyup="this.value = this.value.toUpperCase();" class="valid-check" v-model="courses" id="courses" type="text" placeholder="E G1,D G4,M L1,MU G1" pattern="^[A-Z]{1,2}\d?\s[A-Z][1-9](,\s?[A-Z]{1,2}\d?\s[A-Z][1-9])*$" required>
       <label>Stufe: {{ current }}</label>
