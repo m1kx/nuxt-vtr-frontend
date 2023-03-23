@@ -120,7 +120,7 @@ a {
 
 .data-display {
   height: 100%;
-  width: 50%;
+  width: 49.75%;
   float: left;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -158,6 +158,14 @@ i {
   padding-bottom: 40px;
 }
 
+#seperator {
+  width: 0.5%;
+  height: 100%;
+  background-color: rgba(203, 203, 203, 0.216);
+  float: left;
+  border-radius: 10px;
+}
+
 @media (max-width: 860px) {
 	#main {
     padding-top: 30px;
@@ -181,7 +189,16 @@ i {
     font-size: 20px;
   }
   .data-display {
-    font-size: 18px;
+    font-size: 15px;
+  }
+  .data-display p {
+    line-height: 5px;
+  }
+  .data-display h2 {
+    margin-top: 0px;
+  }
+  #seperator {
+    display: none;
   }
   #display {
     width: 100vw;
