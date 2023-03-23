@@ -1,0 +1,37 @@
+<script lang="ts">
+export default {
+  data() {
+    return {
+      robot_status: ""
+    }
+  },
+  methods: {
+    async check_status() {
+      try {
+        const res = await (await fetch("https://bothealth.mikadev.tech/health")).json();
+        if (res.status == "alive") {
+          this.robot_status = "happy";
+        } else {
+          this.robot_status = "sad";
+        }
+      } catch (error) {
+        console.log(error)
+        this.robot_status = "sad";
+      }
+    }
+  },
+  mounted() {
+    this.check_status()
+    setInterval(() => {
+      this.check_status()
+    }, 9000);
+  }
+}
+</script>
+
+<template>
+  <div>
+    <slot/>
+    <HealthCheck :bot_status="robot_status"/>
+  </div>
+</template>

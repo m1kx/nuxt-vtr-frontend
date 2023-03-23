@@ -169,6 +169,29 @@ i {
   border-radius: 10px;
 }
 
+#health {
+  overflow: hidden;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: 60px;
+  width: 60px;
+  background-color: #484848;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#health img {
+  height: 50px;
+  width: 50px;
+  padding-top: 10px;
+  transition: transform 1s ease-in-out;
+}
+#health img:hover {
+  transform: rotate(360deg);
+}
+
 @media (max-width: 860px) {
 	#main {
     padding-top: 30px;

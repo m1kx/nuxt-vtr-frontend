@@ -1,8 +1,10 @@
 <script>
-import "./assets/style.css"
+import "./assets/style.css";
 </script>
 <template>
   <div>
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
