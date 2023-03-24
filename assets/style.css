@@ -225,7 +225,6 @@ i {
   .data-display {
     font-size: 15px;
     height: 99%;
-    position: relative;
   }
   .data-display p {
     line-height: 5px;
@@ -234,10 +233,13 @@ i {
     margin-top: 0px;
   }
   #seperator {
-    width: 86.5%;
+    width: calc(100% - 40px);
     height: 5px;
     position: absolute;
-    top: 240px;
+    top: 180px;
+  }
+  #display-container {
+    position: relative;
   }
   #display {
     width: 100vw;
@@ -258,7 +260,6 @@ i {
     background-color: transparent;
   }
   html, body {
-    position: sticky;
     background-color: rgba(22,24,59,1);
     /*background: linear-gradient(0deg, rgb(49, 80, 137) 0%, rgba(22,24,59,1) 100%);*/
   }
