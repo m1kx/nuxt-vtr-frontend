@@ -2,7 +2,7 @@
 export default {
   data() {
     return {
-      robot_status: ""
+      robot_status: "happy"
     }
   },
   methods: {
