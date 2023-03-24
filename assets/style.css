@@ -259,9 +259,8 @@ i {
   }
   html, body {
     position: sticky;
-    background: rgb(25,25,25);
-    background-color: transparent;
-    background: linear-gradient(0deg, rgb(49, 80, 137) 0%, rgba(22,24,59,1) 100%);
+    background-color: rgba(22,24,59,1);
+    /*background: linear-gradient(0deg, rgb(49, 80, 137) 0%, rgba(22,24,59,1) 100%);*/
   }
   .area[pos=top] {
     border-radius: 15px 15px 0px 0px;
