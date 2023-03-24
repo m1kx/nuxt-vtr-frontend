@@ -6,20 +6,9 @@ export default {
       type: Object,
       default: "Null"
     },
-  },
-  data() {
-    return {
-      heading: "Nichts"
-    }
-  },
-  mounted() {
-    if (this.day_data.hash != "") {
-      this.heading = this.day_data.date;
-      if (this.day_data.date == "") {
-        this.heading = "..."
-      }
-    } else {
-      this.heading = "Nichts"
+    heading: {
+      type: String,
+      default: "err"
     }
   },
   methods: {
