@@ -1,0 +1,49 @@
+<script lang="ts">
+import { ListResult } from 'pocketbase';
+
+export default {
+  name: "ScoreDisplay",
+  data() {
+    return {
+      list: [] as any[]
+    }
+  },
+  async mounted() {
+    const users_sorted: ListResult<any[]> = await pb.instance.collection("users").getList(1, 5, {
+      sort: "-score"
+    });
+    console.log(users_sorted)
+    this.list = users_sorted.items as any[];
+  }
+}
+</script>
+
+<template>
+  <div class="area" id="score-display">
+    <div id="score-content">
+      <h2>EVA SCORE</h2>
+      <h3>DEIN SCORE</h3>
+      <h3>TOP 5 SCORE</h3>
+      <div id="your-score" class="score">
+        <div>
+          <h2>{{ pb.currentUser.score }}</h2>
+        </div>
+      </div>
+      <div id="score-seperator"></div>
+      <div id="top-score" class="score">
+        <div>
+          <div v-for="item, index in list">
+            <div v-if="item.score != 0">
+              <div v-if="item.id == pb.currentUser.id" style="color: rgb(157, 241, 154);;">
+                {{ item.score }}
+              </div>
+              <div v-else>
+                {{ item.score }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

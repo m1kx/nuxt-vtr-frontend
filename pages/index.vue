@@ -48,10 +48,11 @@ export default {
   <div id="main-content">
     <div v-if="currentUser" id="main-settings">
       <div v-if="currentUser.verified">
-        <h1>ACCOUNT</h1>
+        <h1 id="main-heading">HALLO, {{ currentUser?.email.split("@")[0].toUpperCase() }}</h1>
         <Display :currentUser="currentUser" />
+        <ScoreDisplay />
         <Options :currentUser="currentUser"></Options>
-        <p>Angemeldet!<br/>(user-id: {{ pb.currentUser.id }})</p>
+        <p>Angemeldet!<br/>(user-id: {{ pb.currentUser.id }})<br/>( <i id="mail-notify">{{ pb.currentUser.email }}</i>)</p>
       </div>
       <div v-else>
         <p id="confirm">Bitte email bestätigen und danach neu laden</p>

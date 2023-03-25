@@ -30,10 +30,13 @@ export default {
 <template>
   <div class="data-display">
     <h2>{{ heading }}</h2>
-    <div v-for="data, index in fmt_data()">
+    <div v-if="fmt_data()[0] != ''" v-for="data, index in fmt_data()">
       <p>
         {{ data[1] }}  {{ data[2] }}  <i>{{ data[5] }}</i>
       </p>
+    </div>
+    <div v-else>
+      Keine Ereignisse
     </div>
   </div>
 </template>

@@ -7,6 +7,28 @@ body,html {
   margin: 0;
   overflow-x: hidden;
 }
+h2 {
+  color: rgb(191, 205, 226);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  position: absolute;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6e6e6e41;
+  border-radius: 10px
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0000008b;
+}
+
 #header {
   width: 100vw;
   text-align: center;
@@ -119,6 +141,65 @@ a {
   color: rgb(162, 162, 162);
 }
 
+.score {
+  width: calc(50% - (3.5px / 2));
+  float: left;
+  height: calc(100% - 27px);
+  display: inline-block;
+}
+
+#score-seperator {
+  width: 3.5px;
+  border-radius: 10px;
+  height: 80%;
+  background-color: rgba(203, 203, 203, 0.216);
+  transform: translateY(-25%);
+  float: left;
+}
+
+#your-score {
+  height: 50%;
+  font-size: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#your-score h2 {
+  color: rgb(157, 201, 154);
+}
+
+#score-content {
+  height: 100%;
+}
+
+#score-content h3 {
+  width: 50%;
+  display: inline-block;
+  padding: 0;
+}
+
+#score-content h2 {
+  padding: 0;
+  margin: 0;
+}
+
+#top-score {
+  height: 50%;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#score-display {
+  width: 50vw;
+  height: 200px;
+  padding: 20px;
+  margin-left: calc(25vw - 20px);
+  margin-bottom: 40px;
+}
+
 .data-display {
   height: 100%;
   width: calc(50% - (3.5px / 2));
@@ -170,6 +251,11 @@ i {
   border-radius: 10px;
 }
 
+#main-heading {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 #health {
   overflow: hidden;
   position: fixed;
@@ -193,6 +279,26 @@ i {
   transform: rotate(360deg);
 }
 
+#mail-notify {
+  color: #fff;
+}
+#mail-notify svg {
+  color: green;
+  height: 100px
+}
+#mail-notify::before {
+  display: inline-block;
+  content: '';
+  background-image: url(/bell.svg);
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+  padding-right: 5px;
+  transform: translateY(5px);
+  color: #fff;
+}
+
 @media (max-width: 860px) {
 	#main {
     padding-top: 30px;
@@ -213,6 +319,12 @@ i {
   }
   #login-style #update-button {
     width: 100% !important;
+  }
+  #score-display {
+    width: 100vw;
+    padding: 0;
+    padding-top: 40px;
+    margin-left: 0;
   }
   #display-container {
     height: 150px;
@@ -258,6 +370,10 @@ i {
     border-radius: 0px;
     box-shadow: none;
     background-color: transparent;
+  }
+  #main-heading {
+    font-size: 20px;
+    padding-bottom: 0;
   }
   html, body {
     background-color: rgba(22,24,59,1);
