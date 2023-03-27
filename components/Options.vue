@@ -100,7 +100,7 @@ export default {
       }
       try {
         await pb.instance.collection('users').update(this.currentUser.id, data_updated);
-        await pb.instance.collection('users').update(this.currentUser.id, { "update": true });
+        await pb.instance.collection('users').update(this.currentUser.id, { "new_update": true });
       } catch (error) {
         alert("Ein unerwarteter Fehler ist aufgetreten, versuche es später erneut...");
         this.loading_upd = false;

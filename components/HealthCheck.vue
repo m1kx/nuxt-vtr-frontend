@@ -16,7 +16,7 @@ export default {
     navigatetoerr() {
       this.clicks++
       if (this.bot_status == "sad" && this.clicks > 10) {
-        window.open("https://bothealth.mikadev.tech/health", '_blank')?.focus();
+        window.open("https://bot.mikadev.tech/app/api/health", '_blank')?.focus();
       }
     }
   }

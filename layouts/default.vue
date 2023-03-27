@@ -8,7 +8,7 @@ export default {
   methods: {
     async check_status() {
       try {
-        const res = await (await fetch("https://bothealth.mikadev.tech/health")).json();
+        const res = await (await fetch("https://bot.mikadev.tech/app/api/health")).json();
         if (res.status == "alive") {
           this.robot_status = "happy";
         } else {
