@@ -9,9 +9,11 @@ export default {
     }
   },
   async mounted() {
-    const users: ListResult<any[]> = await pb.instance.collection("users").getFullList(200, {});
+    const users: ListResult<any[]> = await pb.instance.collection("users").getList(1,5, {
+      sort: "-h_score"
+    });
     this.list = users.items as any[];
-    this.list.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
+    //this.list.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
   }
 }
 </script>
