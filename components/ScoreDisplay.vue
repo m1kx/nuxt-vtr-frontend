@@ -10,13 +10,10 @@ export default {
   },
   async mounted() {
     const users: ListResult<any[]> = await pb.instance.collection("users").getList(1, 5, {
-      sort: "-h_score"
+      sort: "-score"
     });
     // @ts-ignore
-    //users.items.sort((a,b) => {
-    //  return (b.score+b.h_score)-(a.score+a.h_score)
-    //})
-    //users.items.sort((a,b) => ((a.score+a.h_score) < (b.score+b.h_score)) ? 1 : -1 )
+    users.items.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
     this.list = users.items as any[];
   }
 }
