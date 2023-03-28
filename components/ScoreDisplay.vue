@@ -9,12 +9,10 @@ export default {
     }
   },
   async mounted() {
-    const users: ListResult<any[]> = await pb.instance.collection("users").getList(1, 5, {});
+    const users: ListResult<any[]> = await pb.instance.collection("users").getFullList(200, {});
     const items = users.items as any[];
-    console.log(items)
     // @ts-ignore
     items.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
-    console.log(items)
     this.list = items;
   }
 }
@@ -35,7 +33,7 @@ export default {
       <div id="top-score" class="score">
         <div>
           <div v-for="item, index in list">
-            <div v-if="item.score != 0">
+            <div v-if="(item.score + item.h_score) != 0">
               <div v-if="item.id == pb.currentUser.id" style="color: rgb(157, 241, 154);">
                 {{ item.score + item.h_score }}
               </div>
