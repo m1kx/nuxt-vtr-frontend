@@ -36,7 +36,7 @@ export default {
         <div>
           <div v-for="item, index in list">
             <div v-if="item.score != 0">
-              <div v-if="item.id == pb.currentUser.id" style="color: rgb(157, 241, 154);;">
+              <div v-if="item.id == pb.currentUser.id" style="color: rgb(157, 241, 154);">
                 {{ item.score + item.h_score }}
               </div>
               <div v-else>
