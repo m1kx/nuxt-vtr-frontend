@@ -10,10 +10,9 @@ export default {
   },
   async mounted() {
     const users: ListResult<any[]> = await pb.instance.collection("users").getFullList(200, {});
-    const items = users.items as any[];
     // @ts-ignore
-    items.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
-    this.list = items;
+    users.items.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
+    this.list = users.items;
   }
 }
 </script>
