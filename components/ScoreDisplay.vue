@@ -13,7 +13,10 @@ export default {
       sort: "-score"
     });
     // @ts-ignore
-    users.items.sort((a,b) => ((a.score+a.h_score) < (b.score+b.h_score)) ? 1 : -1 )
+    users.items.sort((a,b) => {
+      return (b.score+b.h_score)-(a.score+a.h_score)
+    })
+    //users.items.sort((a,b) => ((a.score+a.h_score) < (b.score+b.h_score)) ? 1 : -1 )
     this.list = users.items as any[];
   }
 }
