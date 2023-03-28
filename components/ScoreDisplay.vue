@@ -11,8 +11,10 @@ export default {
   async mounted() {
     const users: ListResult<any[]> = await pb.instance.collection("users").getList(1, 5, {});
     const items = users.items as any[];
+    console.log(items)
     // @ts-ignore
     items.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
+    console.log(items)
     this.list = items;
   }
 }
