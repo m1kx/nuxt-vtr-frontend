@@ -12,7 +12,6 @@ export default {
     this.list = users as any[];
     this.list.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
     this.list.splice(5,this.list.length - 5)
-    console.log(this.list)
   }
 }
 </script>

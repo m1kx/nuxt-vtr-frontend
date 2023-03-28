@@ -52,6 +52,7 @@ export default {
         <Display :currentUser="currentUser" />
         <ScoreDisplay />
         <Options :currentUser="currentUser"></Options>
+        <EnableNotification />
         <p>Angemeldet!<br/>(user-id: {{ pb.currentUser.id }})<br/>( <i id="mail-notify">{{ pb.currentUser.email }}</i>)</p>
       </div>
       <div v-else>
