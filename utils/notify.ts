@@ -18,7 +18,7 @@ async function subscribe() {
     await pb.instance.collection('users').update(pb.currentUser.id, {"notifications": JSON.stringify(subscription)});
     return true
   } catch (error) {
-    console.log(error) //
+    console.log(error)
     alert("Error: Version nicht unterstuetzt /\nBenachrichtigungen abgelehnt")
     return false
   }

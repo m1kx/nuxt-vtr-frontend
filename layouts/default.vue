@@ -1,4 +1,10 @@
 <script lang="ts">
+const { $sentrySetUser } = useNuxtApp()
+
+if (pb.currentUser) {
+  $sentrySetUser({ email: pb.currentUser.email, user_id: pb.currentUser.id });
+}
+
 export default {
   data() {
     return {
