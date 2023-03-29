@@ -1,16 +1,22 @@
 <script lang="ts">
-
 export default {
   name: "ScoreDisplay",
   data() {
     return {
-      list: [] as any[]
+      list: [] as any[],
+      ranking: 0
     }
   },
   async mounted() {
     const users: object[] = await pb.instance.collection("users").getFullList(200, {});
     this.list = users as any[];
     this.list.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
+    for (let i = 0; i < this.list.length; i++) {
+      if (this.list[i].id == pb.currentUser.id) {
+        this.ranking = i;
+        break;
+      }
+    }
     this.list.splice(5,this.list.length - 5)
   }
 }
@@ -25,6 +31,7 @@ export default {
       <div id="your-score" class="score">
         <div>
           <h2>{{ pb.currentUser.score + pb.currentUser.h_score }}</h2>
+          <h6 style="margin: 0;">(Platz {{ ranking }})</h6>
         </div>
       </div>
       <div id="score-seperator"></div>
