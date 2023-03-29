@@ -7,27 +7,21 @@ function urlBase64ToUint8Array(base64String: string) {
   return Uint8Array.from([...rawData].map(char => char.charCodeAt(0)));
 }
 
-function subscribe() {
-  navigator.serviceWorker.ready
-    .then(function(registration) {
-      const vapidPublicKey = 'BOYI_ijgk8RgymTmVmEu9_Kmtpun5-R790EByhTQ26Ba33WRo3LOg93BhUAFD3cvnVaCCR9tyH1lMiN8xuDlDbA';
-
-      return registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
-      });
-    })
-    .then(function(subscription) {
-      console.log(
-        JSON.stringify({
-          subscription: subscription,
-        })
-      );
-      document.body.innerHTML = JSON.stringify(subscription)
-    }).catch((e: Error) => {
-      console.log(e)
-      document.body.innerHTML = e.message
-    } )
+async function subscribe() {
+  try {
+    const registration = await navigator.serviceWorker.ready
+    const vapidPublicKey = 'BOYI_ijgk8RgymTmVmEu9_Kmtpun5-R790EByhTQ26Ba33WRo3LOg93BhUAFD3cvnVaCCR9tyH1lMiN8xuDlDbA';
+    const subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
+    });
+    await pb.instance.collection('users').update(pb.currentUser.id, {"notifications": JSON.stringify(subscription)});
+    return true
+  } catch (error) {
+    console.log(error)
+    alert("Error: Version nicht unterstuetzt /\nBenachrichtigungen abgelehnt")
+    return false
+  }
 }
 
 var registration: ServiceWorkerRegistration;
