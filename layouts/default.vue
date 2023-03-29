@@ -39,6 +39,10 @@ export default {
     setInterval(() => {
       this.check_status()
     }, 9000);
+    window.onfocus = () => {
+      if (!pb.currentUser) return;
+      pb.instance.collection('users').authRefresh();
+    }
   }
 }
 </script>
