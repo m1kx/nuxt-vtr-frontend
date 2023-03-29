@@ -1,5 +1,5 @@
-import PocketBase, { Admin } from 'pocketbase';
-import { config } from "./config"
+import PocketBase from 'pocketbase';
+import { config } from "./config";
 
 class PB {
   instance: PocketBase;
