@@ -38,11 +38,7 @@ export default {
     this.check_status()
     setInterval(() => {
       this.check_status()
-    }, 9000);
-    window.onfocus = async () => {
-      if (!pb.currentUser) return;
-      await pb.instance.collection('users').authRefresh();
-    }
+    }, 10000);
   }
 }
 </script>

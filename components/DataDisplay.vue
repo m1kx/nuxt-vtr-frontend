@@ -1,6 +1,11 @@
 <script lang="ts">
 export default {
   name: "DataDisplay",
+  data() {
+    return {
+      formatted: []
+    }
+  },
   props: {
     day_data: {
       type: Object,
@@ -9,20 +14,36 @@ export default {
     heading: {
       type: String,
       default: "err"
+    },
+    day: {
+      type: String,
+      default: "h"
     }
   },
   methods: {
-    split_inner(inner: string) {
-      return inner.split("|")
-    },
     fmt_data() {
-      const actions = this.day_data.hash.split("!!!")
+      let actions = []
+      if (this.day == "h") {
+        actions = atob(pb.currentUser.h_hash).split("!!!")
+      } else {
+        actions = atob(pb.currentUser.m_hash).split("!!!")
+      }
       for (let i = 0; i < actions.length; i++) {
         // @ts-ignore
         actions[i] = actions[i].split("|")
       }
-      return actions
+      this.formatted = actions as []
     }
+  },
+  beforeMount() {
+    pb.instance.collection("users").subscribe(pb.currentUser.id, async (e) => {
+      setTimeout(() => {
+        this.fmt_data();
+      }, 400);
+    })
+  },
+  mounted() {
+    this.fmt_data();
   }
 }
 </script>
@@ -30,7 +51,7 @@ export default {
 <template>
   <div class="data-display">
     <h2>{{ heading }}</h2>
-    <div v-if="fmt_data()[0] != ''" v-for="data, index in fmt_data()">
+    <div v-if="formatted[0] != ''" v-for="data, index in formatted">
       <p>
         {{ data[1] }}  {{ data[2] }}  <i>{{ data[5] }}</i>
       </p>

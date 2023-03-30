@@ -31,7 +31,7 @@ export default {
     <div id="display-container" class="area" pos="top">
       <DataDisplay :day_data="h_data" :heading="days.day_1" />
       <div id="seperator"></div>
-      <DataDisplay :day_data="m_data" :heading="days.day_2" />
+      <DataDisplay :day_data="m_data" :heading="days.day_2" day="m" />
     </div>
   </div>
 </template>
