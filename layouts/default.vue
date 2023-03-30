@@ -42,7 +42,6 @@ export default {
     window.onfocus = async () => {
       if (!pb.currentUser) return;
       await pb.instance.collection('users').authRefresh();
-      location.reload()
     }
   }
 }
