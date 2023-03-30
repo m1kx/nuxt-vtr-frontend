@@ -23,6 +23,9 @@ class PB {
       await this.instance.collection('users').authRefresh();
       this.update_data()
     }
+    window.onload = () => {
+      this.update_data()
+    }
     if (this.currentUser) {
       this.instance.collection('users').authRefresh();
       this.update_data()
