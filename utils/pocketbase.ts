@@ -24,7 +24,10 @@ class PB {
       this.update_data()
     }
     window.onload = () => {
-      this.update_data()
+      console.log("Started App")
+      setTimeout(() => {
+        this.update_data()
+      }, 300);
     }
     if (this.currentUser) {
       this.instance.collection('users').authRefresh();
