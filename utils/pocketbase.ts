@@ -17,33 +17,23 @@ class PB {
     }
     this.instance.collection("users").subscribe("*", async (e) => {
       await this.instance.collection('users').authRefresh();
-      this.update_data()
+      this.refresh();
     })
-    window.onfocus = async () => {
-      await this.instance.collection('users').authRefresh();
-      this.update_data()
-    }
-    window.onload = () => {
-      console.log("Started App")
-      setTimeout(() => {
-        this.update_data()
-      }, 300);
-    }
-    if (this.currentUser) {
-      this.instance.collection('users').authRefresh();
-      this.update_data()
-    }
-    this.instance.authStore.onChange((auth : any) => {
+    this.instance.authStore.onChange(async (auth : any) => {
       console.log('auth changed ', this.instance.authStore.model)
       this.currentUser = this.instance.authStore.model;
-      if (this.currentUser) {
-        this.update_data()
-      }
     });
   }
 
-  update_data() {
-    this.data.subjects_formatted = this.currentUser.subjects.replaceAll(":", ",");
+  async refresh() {
+    await this.instance.collection('users').authRefresh();
+    await this.update_data();
+    return true
+  }
+
+  async update_data() {
+    this.data.subjects_formatted = pb.currentUser.subjects.replaceAll(":", ",");
+    return true
   }
 }
 

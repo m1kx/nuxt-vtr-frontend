@@ -21,12 +21,12 @@ export default {
     }
   },
   methods: {
-    fmt_data() {
+    fmt_data(rec: any) {
       let actions = []
       if (this.day == "h") {
-        actions = atob(pb.currentUser.h_hash).split("!!!")
+        actions = atob(rec.h_hash).split("!!!")
       } else {
-        actions = atob(pb.currentUser.m_hash).split("!!!")
+        actions = atob(rec.m_hash).split("!!!")
       }
       for (let i = 0; i < actions.length; i++) {
         // @ts-ignore
@@ -37,13 +37,11 @@ export default {
   },
   beforeMount() {
     pb.instance.collection("users").subscribe(pb.currentUser.id, async (e) => {
-      setTimeout(() => {
-        this.fmt_data();
-      }, 400);
+      this.fmt_data(e.record);
     })
   },
   mounted() {
-    this.fmt_data();
+    this.fmt_data(pb.currentUser);
   }
 }
 </script>

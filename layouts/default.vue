@@ -8,7 +8,8 @@ if (pb.currentUser) {
 export default {
   data() {
     return {
-      robot_status: "happy"
+      robot_status: "happy",
+      refreshed: false
     }
   },
   methods: {
@@ -34,12 +35,20 @@ export default {
       return Uint8Array.from([...rawData].map(char => char.charCodeAt(0)));
     }
   },
+  async beforeMount() {
+    if (pb.currentUser) {
+      await pb.refresh();
+      this.refreshed = true;
+    } else {
+      this.refreshed = true;
+    }
+  },
   mounted() {
     this.check_status()
     setInterval(() => {
       this.check_status()
-    }, 10000);
-  }
+    }, 10000);  
+  },
 }
 </script>
 
