@@ -13,7 +13,11 @@ export default defineNuxtPlugin((nuxtApp) => {
                 routingInstrumentation: Sentry.vueRouterInstrumentation(nuxtApp.$router),
                 tracingOrigins: ["m1kx.github.io", /^\//],
             }),
+            new Sentry.Replay()
         ],
+        replaysSessionSampleRate: 0.2,
+        replaysOnErrorSampleRate: 0.7,
+
         logErrors: false,
         tracesSampleRate: config.SENTRY_TRACES_SAMPLE_RATE || 1.0,
         debug: config.SENTRY_ENABLE_DEBUG || false,
