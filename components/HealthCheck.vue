@@ -14,6 +14,8 @@ export default {
   },
   methods: {
     navigatetoerr() {
+      const pb = usePocketbase();
+      pb.collection("users").authRefresh();
       this.clicks++
       if (this.bot_status == "sad" && this.clicks > 10) {
         window.open("https://bot.mikadev.tech/app/api/health", '_blank')?.focus();
