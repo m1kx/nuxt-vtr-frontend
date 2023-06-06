@@ -1,59 +1,50 @@
-<script lang="ts">
-import Display from '../components/Display.vue';
-import Options from '../components/Options.vue';
-export default {
-  components: {
-    Options
-  },
-  data() {
-    return {
-      currentUser: pb.instance.authStore.model,
-    }
-  },
-  methods: {
-    loading(e: HTMLElement) {
-      const dots = e;
-      var text = "Lädt";
-      dots.innerHTML = text + ".";
-      setInterval(function() {
-        if (dots.innerHTML.length > text.length + 3) {
-          dots.innerHTML = text + ".";
-        } else {
-          dots.innerHTML += ".";
-        }
-      }, 400);
-    },
-    async signOut(e: Event) {
-      // @ts-ignore
-      this.loading(e.srcElement);
-      pb.instance.authStore.clear();
-    },
-    async deleteAccount(e: Event) {
-      const answer = prompt("Willst du den Account wirklich löschen? (ja/nein)")
 
-      if (this.currentUser && answer == "ja") {
-        pb.instance.collection("users").delete(this.currentUser.id);
-      }
+<script lang="ts" setup>
+const pb = usePocketbase();
+var user = pb.authStore.model;
+pb.authStore.onChange((auth : any) => {
+  user = pb.authStore.model;
+  window.location.reload();
+});
+
+function loading(e: HTMLElement) {
+  const dots = e;
+  var text = "Lädt";
+  dots.innerHTML = text + ".";
+  setInterval(function() {
+    if (dots.innerHTML.length > text.length + 3) {
+      dots.innerHTML = text + ".";
+    } else {
+      dots.innerHTML += ".";
     }
-  },
-  mounted() {
-    pb.instance.authStore.onChange((auth : any) => {
-      this.currentUser = pb.instance.authStore.model;
-    });
-  },
+  }, 400);
+}
+
+async function signOut(e: Event) {
+  // @ts-ignore
+  loading(e.srcElement);
+  pb.authStore.clear();
+}
+
+async function deleteAccount(e: Event) {
+  const answer = prompt("Willst du den Account wirklich löschen? (ja/nein)")
+
+  if (user && answer == "ja") {
+    pb.collection("users").delete(user.id);
+  }
 }
 </script>
 
 <template>
   <div id="main-content">
-    <div v-if="currentUser" id="main-settings">
-      <div v-if="currentUser.verified">
-        <h1 id="main-heading">HALLO, {{ currentUser?.email.split("@")[0].toUpperCase() }}</h1>
-        <Display :currentUser="currentUser" />
+    <div v-if="user" id="main-settings">
+      <div v-if="user.verified">
+        <h1 id="main-heading">HALLO, {{ user?.email.split("@")[0].toUpperCase() }}</h1>
+        <Display />
         <ScoreDisplay />
-        <Options :currentUser="currentUser"></Options>
+        <Options></Options>
         <EnableNotification />
-        <p>Angemeldet!<br/>(user-id: {{ pb.currentUser.id }})<br/>( <i id="mail-notify">{{ pb.currentUser.email }}</i>)</p>
+        <p>Angemeldet!<br/>(user-id: {{ user.id }})<br/>( <i id="mail-notify">{{ user.email }}</i>)</p>
       </div>
       <div v-else>
         <p id="confirm">Bitte email bestätigen und danach neu laden</p>

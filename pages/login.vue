@@ -1,19 +1,21 @@
 <script lang="ts">
+const pb = usePocketbase();
+let user = pb.authStore.model;
+pb.authStore.onChange((auth : any) => {
+  user = pb.authStore.model;
+  navigateTo('/');
+});
+
 export default {
   data() {
     return {
       password: "",
       username: "",
-      currentUser: pb.instance.authStore.model,
       loading_auth: false
     }
   },
   mounted() {
-    pb.instance.authStore.onChange((auth : any) => {
-      this.currentUser = pb.instance.authStore.model;
-      navigateTo("/");
-    });
-    if (pb.currentUser) {
+    if (user) {
       navigateTo("/");
     }
   },
@@ -66,7 +68,7 @@ export default {
       // @ts-ignore
       this.loading(e.srcElement);
       try {
-        await pb.instance.collection('users').authWithPassword(this.username,this.password);
+        await pb.collection('users').authWithPassword(this.username,this.password);
         this.loading_auth = false;
       } catch (error) {
         alert("EMail oder Passwort falsch")

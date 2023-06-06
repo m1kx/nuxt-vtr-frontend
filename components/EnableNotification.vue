@@ -1,37 +1,43 @@
-<script lang="ts">
-export default {
-  name: "EnableNotification",
-  data() {
-    return {
-      notifications: false
-    }
-  },
-  mounted() {
-    this.notifications = (pb.currentUser.notifications != "")
-  },
-  methods: {
-    async clicked() {
-      if (this.has_notifications()) {
-        await pb.instance.collection('users').update(pb.currentUser.id, {"notifications": ""});
-        this.notifications = false
-        return
-      }
-      navigator.serviceWorker.register('service-worker.js')
-      const registration = await navigator.serviceWorker.ready
-      const subscription = await registration.pushManager.getSubscription();
-      if (!subscription) {
-        const success = await notify.subscribe()
-        this.notifications = success
-      } else {
-        await pb.instance.collection('users').update(pb.currentUser.id, {"notifications": JSON.stringify(subscription)});
-        this.notifications = true
-      }
-    },
-    has_notifications() {
-      return (pb.currentUser.notifications != "")
-    }
+<script lang="ts" setup>
+const pb = usePocketbase();
+var user = pb.authStore.model;
+pb.authStore.onChange((auth : any) => {
+  user = pb.authStore.model;
+});
+
+var notifications = false;
+
+function has_notifications() {
+  if (!user) return false;
+  return (user.notifications != "")
+}
+
+async function clicked() {
+  if (has_notifications() && user) {
+    await pb.collection('users').update(user.id, {"notifications": ""});
+    notifications = false
+    return
+  }
+  navigator.serviceWorker.register('service-worker.js')
+  const registration = await navigator.serviceWorker.ready
+  const subscription = await registration.pushManager.getSubscription();
+  if (!subscription) {
+    const success = await notify.subscribe()
+    notifications = success
+  } else {
+    if (!user) return;
+    await pb.collection('users').update(user.id, {"notifications": JSON.stringify(subscription)});
+    notifications = true
   }
 }
+
+onBeforeMount(() => {
+  if (!user) return;
+  notifications = (user.notifications != "")
+})
+</script>
+
+<script lang="ts">
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-import PocketBase from 'pocketbase';
+/*import PocketBase from 'pocketbase';
 import { config } from "./config";
 
 interface pb_dynamic {
@@ -37,4 +37,4 @@ class PB {
   }
 }
 
-export const pb = new PB();
+export const pb = new PB();*/

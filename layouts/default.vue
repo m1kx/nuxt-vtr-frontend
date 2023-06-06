@@ -1,8 +1,14 @@
 <script lang="ts">
 const { $sentrySetUser } = useNuxtApp()
 
-if (pb.currentUser) {
-  $sentrySetUser({ email: pb.currentUser.email, user_id: pb.currentUser.id });
+const pb = usePocketbase();
+var user = pb.authStore.model;
+pb.authStore.onChange((auth : any) => {
+  user = pb.authStore.model;
+});
+
+if (user) {
+  $sentrySetUser({ email: user.email, user_id: user.id });
 }
 
 export default {
@@ -22,7 +28,6 @@ export default {
           this.robot_status = "sad";
         }
       } catch (error) {
-        console.log(error)
         this.robot_status = "sad";
       }
     },
@@ -36,12 +41,7 @@ export default {
     }
   },
   async beforeMount() {
-    if (pb.currentUser) {
-      await pb.refresh();
-      this.refreshed = true;
-    } else {
-      this.refreshed = true;
-    }
+    this.refreshed = true;
   },
   mounted() {
     this.check_status()

@@ -1,25 +1,31 @@
-<script lang="ts">
-export default {
-  name: "ScoreDisplay",
-  data() {
-    return {
-      list: [] as any[],
-      ranking: 0
-    }
-  },
-  async mounted() {
-    const users: object[] = await pb.instance.collection("users").getFullList(200, {});
-    this.list = users as any[];
-    this.list.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
-    for (let i = 0; i < this.list.length; i++) {
-      if (this.list[i].id == pb.currentUser.id) {
-        this.ranking = i;
+<script lang="ts" setup>
+const pb = usePocketbase();
+var user = pb.authStore.model;
+pb.authStore.onChange((auth : any) => {
+  user = pb.authStore.model;
+});
+
+var list: any[] = [];
+var ranking = 0;
+
+const { data } = await useAsyncData(
+  'users',
+  async () => {
+    const users: object[] = await pb.collection("users").getFullList(200, {});
+    list = users as any[];
+    list.sort((a, b) => (b.score + b.h_score) - (a.score + a.h_score));
+    
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].id == user?.id) {
+        ranking = i + 1;
         break;
       }
     }
-    this.list.splice(5,this.list.length - 5)
-  }
-}
+    
+    list.splice(5,list.length - 5)
+    return list
+  },
+)
 </script>
 
 <template>
@@ -30,16 +36,16 @@ export default {
       <h3>TOP 5 SCORE</h3>
       <div id="your-score" class="score">
         <div>
-          <h2>{{ pb.currentUser.score + pb.currentUser.h_score }}</h2>
+          <h2>{{ user?.score + user?.h_score }}</h2>
           <h6 style="margin: 0;">(Platz {{ ranking }})</h6>
         </div>
       </div>
       <div id="score-seperator"></div>
       <div id="top-score" class="score">
         <div>
-          <div v-for="item, index in list">
+          <div v-for="item, index in data" :key="index">
             <div v-if="(item.score + item.h_score) != 0">
-              <div v-if="item.id == pb.currentUser.id" style="color: rgb(157, 241, 154);">
+              <div v-if="item.id == user?.id" style="color: rgb(157, 241, 154);">
                 {{ item.score + item.h_score }}
               </div>
               <div v-else>

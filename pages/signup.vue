@@ -1,5 +1,10 @@
 <script lang="ts">
-import Options from '~~/components/Options.vue';
+
+const pb = usePocketbase();
+var user = pb.authStore.model;
+pb.authStore.onChange((auth : any) => {
+  user = pb.authStore.model;
+});
 
 export default {
   data() {
@@ -8,25 +13,17 @@ export default {
       username: "",
       password_w: "",
       current: "",
-      courses: "",
-      currentUser: pb.instance.authStore.model,
+      courses: ""
     }
   },
-  components: {
-    Options
-  },
   mounted() {
-    pb.instance.authStore.onChange((auth : any) => {
-      this.currentUser = pb.instance.authStore.model;
-      navigateTo("/");
-    });
-    if (pb.currentUser) {
+    if (user) {
       navigateTo("/");
     }
   },
   methods: {
     async login() {
-      await pb.instance.collection('users').authWithPassword(this.username,this.password);
+      await pb.collection('users').authWithPassword(this.username,this.password);
     },
     loading(e: HTMLElement) {
       const dots = e;
@@ -82,8 +79,8 @@ export default {
         class: this.current,
         subjects: this.courses.replace(/, /g, ',').replace(/,/g, ':'),
       };
-      await pb.instance.collection('users').create(data);
-      await pb.instance.collection('users').requestVerification(data.email);
+      await pb.collection('users').create(data);
+      await pb.collection('users').requestVerification(data.email);
       this.login()
     },
     button_select(e: Event) {

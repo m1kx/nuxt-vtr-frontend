@@ -1,37 +1,31 @@
-<script lang="ts">
-export default {
-  name: "Display",
-  props: {
-    currentUser: pb.currentUser
-  },
-  data() {
+<script lang="ts" setup>
+const pb = usePocketbase();
+var user = pb.authStore.model;
+pb.authStore.onChange((auth : any) => {
+  user = pb.authStore.model;
+});
+
+const { data } = await useAsyncData(
+  'dates',
+  async () => {
+    const times = await pb.collection("times").getOne("ux8ausqmf2h57dd")
     return {
-      h_data: {
-        hash: atob(this.currentUser.h_hash)
-      },
-      m_data: {
-        hash: atob(this.currentUser.m_hash)
-      },
-      days: {
-        day_1: "",
-        day_2: ""
-      }
+      day_1: times.day_1,
+      day_2: times.day_2
     }
-  },
-  async mounted() {
-    const times = await pb.instance.collection("times").getOne("ux8ausqmf2h57dd")
-    this.days.day_1 = times.day_1;
-    this.days.day_2 = times.day_2;
   }
-}
+)
+</script>
+
+<script lang="ts">
 </script>
 
 <template>
   <div id="display">
     <div id="display-container" class="area" pos="top">
-      <DataDisplay :day_data="h_data" :heading="days.day_1" />
+      <DataDisplay :heading="data?.day_1" day="h" />
       <div id="seperator"></div>
-      <DataDisplay :day_data="m_data" :heading="days.day_2" day="m" />
+      <DataDisplay :heading="data?.day_2" day="m" />
     </div>
   </div>
 </template>
