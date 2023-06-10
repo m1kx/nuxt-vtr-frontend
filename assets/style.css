@@ -264,16 +264,18 @@ i {
   right: 20px;
   height: 60px;
   width: 60px;
-  background-color: #484848;
+  background-color: #d4d4d440;
+  backdrop-filter: blur(10px);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 #health img {
-  height: 50px;
-  width: 50px;
-  padding-top: 10px;
+  height: 30px;
+  width: 30px;
+  color: white;
   transition: transform 1s ease-in-out;
 }
 #health img:hover {

@@ -55,6 +55,6 @@ export default {
 <template>
   <div>
     <slot/>
-    <HealthCheck :bot_status="robot_status"/>
+    <RefreshButton />
   </div>
 </template>
