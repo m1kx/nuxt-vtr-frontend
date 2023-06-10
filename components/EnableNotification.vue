@@ -41,5 +41,5 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <button :class="{disablenotification: notifications}" id="notify" @click="clicked">BENACHRICHTIGUNGEN</button>
+  <button :class="{disablenotification: notifications}" id="notify" @click="clicked">PUSH BENACHRICHTIGUNGEN</button>
 </template>
