@@ -44,7 +44,7 @@ async function deleteAccount(e: Event) {
         <ScoreDisplay />
         <Options></Options>
         <EnableNotification />
-        <p>Angemeldet!<br/>(user-id: {{ user.id }})<br/>( <i id="mail-notify">{{ user.email }}</i>)</p>
+        <!--<p>Angemeldet!<br/>(user-id: {{ user.id }})<br/>( <i id="mail-notify">{{ user.email }}</i>)</p>-->
       </div>
       <div v-else>
         <p id="confirm">Bitte email bestätigen und danach neu laden</p>
