@@ -77,7 +77,7 @@ async function deleteAccount(e: Event) {
 }
 #main-content {
   text-align: center;
-  padding-bottom: 40px;
+  padding-bottom: 0px;
 }
 #signin {
   margin-left: 1px;

@@ -119,7 +119,7 @@ onBeforeMount(() => {
       <input onkeyup="this.value = this.value.toUpperCase();" class="valid-check" v-model="courses" id="courses" type="text" placeholder="E G1,D G4,M L1,MU G1" pattern="^[A-Z]{1,2}\d?\s[A-Z][1-9](,\s?[A-Z]{1,2}\d?\s[A-Z][1-9])*$" required>
       <label>Stufe: {{ current }}</label>
       <button ref="select_button_1" class="select" @click="button_select($event)">EF</button><button ref="select_button_2" class="select" @click="button_select($event)">Q1</button><button ref="select_button_3" class="select" @click="button_select($event)">Q2</button><br>
-      <button id="update-button" @click="button_submit($event)" style="background-color: rgba(255, 255, 255, 0.162); margin-top: 35px; width: 50vw;">AKTUALISIEREN</button>
+      <button id="update-button" @click="button_submit($event)" style="background-color: rgba(255, 255, 255, 0.162); margin-top: 23px; width: 50vw; font-size: 15px;">DATEN AKTUALISIEREN</button>
     </div>
   </div>
 </template>
