@@ -12,6 +12,6 @@ function refresh() {
 
 <template>
   <div id="health" @click="refresh" v-if="user">
-    <img src="refresh.svg" />
+    <img src="/public/refresh.svg" />
   </div>
 </template>
