@@ -78,6 +78,7 @@ export default {
         email: this.username,
         class: this.current,
         subjects: this.courses.replace(/, /g, ',').replace(/,/g, ':'),
+        new_version: true,
       };
       await pb.collection('users').create(data);
       await pb.collection('users').requestVerification(data.email);
