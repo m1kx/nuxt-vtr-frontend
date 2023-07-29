@@ -40,7 +40,6 @@ h2 {
 }
 #login {
   width: 100vw;
-  padding-left: calc(25vw - 20px);
   padding-bottom: 40px;
 }
 #signin {
@@ -51,7 +50,6 @@ h2 {
   padding: 20px;
 }
 #options-main {
-  margin-left: calc(25vw - 20px);
   width: 50vw;
   padding: 20px;
   border-radius: 30px;
@@ -80,10 +78,8 @@ h2 {
 }
 .area {
   border-radius: 30px;
-  background-color: rgb(50, 48, 104);
-  box-shadow: 
-    14px 14px 18px 0 rgba(0, 0, 0, 0.486),
-    -10px -10px 14px 0 rgba(255, 255, 255, 0.052);
+  background-color: #00000030;
+  backdrop-filter: blur(200px);
 }
 .select:nth-of-type(2), button:nth-of-type(3) {
   margin-left: 10px;
@@ -108,7 +104,7 @@ h2 {
 }
 
 button {
-  width: 24.5vw;
+  width: 30.5vw;
   margin-top: 20px;
   height: 50px;
   background-color: rgba(255, 255, 255, 0.162);
@@ -144,9 +140,9 @@ a {
 
 .score {
   width: calc(50% - (3.5px / 2));
-  float: left;
   height: calc(100% - 27px);
   display: inline-block;
+  float: left;
 }
 
 #score-seperator {
@@ -195,9 +191,8 @@ a {
 
 #score-display {
   width: 50vw;
-  height: 200px;
+  height: 220px;
   padding: 20px;
-  margin-left: calc(25vw - 20px);
   margin-bottom: 40px;
 }
 
@@ -237,10 +232,10 @@ i {
   height: 315px;
   width: 50vw;
   padding: 20px;
+  margin-bottom: 40px;
 }
 #display {
   width: 100vw;
-  margin-left: calc(25vw - 20px);
   padding-bottom: 40px;
 }
 
@@ -271,6 +266,7 @@ i {
   justify-content: center;
   align-items: center;
   color: white;
+  z-index: 30;
 }
 #health img {
   height: 30px;
@@ -329,6 +325,40 @@ i {
 
 .disablenotification::before {
   background-image: url(/bell-no.svg) !important;
+}
+
+.bg-shape {
+  position: absolute;
+}
+
+.container-main {
+  position: relative;
+}
+
+#background-blur {
+  width: 100vw;
+  position: absolute;
+  z-index: 5;
+  backdrop-filter: blur(100px);
+}
+
+#main-content {
+  position: absolute;
+  z-index: 20;
+}
+
+#main-settings {
+  min-width: 100vw;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.bg-shape {
+  opacity: 0.7;
 }
 
 @media (max-width: 860px) {
@@ -402,6 +432,10 @@ i {
     border-radius: 0px;
     box-shadow: none;
     background-color: transparent;
+    backdrop-filter: none;
+  }
+  .bg-shape {
+    opacity: 0.1;
   }
   #main-heading {
     font-size: 20px;

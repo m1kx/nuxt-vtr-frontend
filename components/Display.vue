@@ -21,11 +21,9 @@ const { data } = await useAsyncData(
 </script>
 
 <template>
-  <div id="display">
-    <div id="display-container" class="area" pos="top">
-      <DataDisplay :heading="data?.day_1" day="h" />
-      <div id="seperator"></div>
-      <DataDisplay :heading="data?.day_2" day="m" />
-    </div>
+  <div id="display-container" class="area" pos="top">
+    <DataDisplay :heading="data?.day_1" day="h" />
+    <div id="seperator"></div>
+    <DataDisplay :heading="data?.day_2" day="m" />
   </div>
 </template>
