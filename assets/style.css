@@ -37,9 +37,10 @@ h2 {
 #main {
   padding-top: 30px;
   width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 #login {
-  width: 100vw;
   padding-bottom: 40px;
 }
 #signin {
