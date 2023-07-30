@@ -64,7 +64,7 @@ const blur_height = document.body.clientHeight * 1.8;
     </div>
     <div id="background-blur" :style="`height: ${blur_height}px;`"></div>
     <div id="background">
-      <BackgroundShape v-for="index in 10" :key="index"/>
+      <BackgroundShape v-for="index in 10" :key="index" :index="index"/>
     </div>
   </div>
 </template>
