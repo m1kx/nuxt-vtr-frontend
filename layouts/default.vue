@@ -8,6 +8,9 @@ pb.authStore.onChange((auth : any) => {
 });
 
 if (user) {
+  if (!window.location.href.includes("/?refreshed=true")) {
+    pb.collection("users").authRefresh();
+  } 
   $sentrySetUser({ email: user.email, user_id: user.id });
 }
 
