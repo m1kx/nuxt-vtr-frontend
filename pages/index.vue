@@ -24,6 +24,7 @@ async function signOut(e: Event) {
   // @ts-ignore
   loading(e.srcElement);
   pb.authStore.clear();
+  window.location.href = "/";
 }
 
 async function deleteAccount(e: Event) {
