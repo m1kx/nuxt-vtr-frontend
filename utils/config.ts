@@ -1,4 +1,4 @@
 export const config = {
-  base_url: "https://bot.mikadev.tech:443/",
-  domain: "bot.mikadev.tech:443"
+  base_url: "https://api.mikaco.de:443/",
+  domain: "api.mikaco.de:443"
 }
