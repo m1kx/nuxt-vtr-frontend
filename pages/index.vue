@@ -4,7 +4,9 @@ const pb = usePocketbase();
 var user = pb.authStore.model;
 pb.authStore.onChange((auth : any) => {
   user = pb.authStore.model;
-  window.location.href = "/?refreshed=true";
+  setTimeout(() => {
+    window.location.href = "/?refreshed=true";
+  }, 400)
 });
 
 function loading(e: HTMLElement) {
