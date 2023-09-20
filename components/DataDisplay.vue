@@ -42,7 +42,7 @@ fmt_data(user)
     <div v-if="formatted[0] != ''">
       <div v-for="data, index in formatted" :key="index">
         <p>
-          {{ data[1] }}  {{ data[2] }}  <i>{{ data[5] }}</i>
+          {{ data[1] }}  {{ data[3] }}  <i>{{ data[2] }}</i>
         </p>
       </div>
     </div>
